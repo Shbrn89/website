@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-base-950 text-slate-300 antialiased;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+
+  /* Offset anchor targets so the fixed navbar doesn't overlap headings */
+  section[id] {
+    scroll-margin-top: 5.5rem;
+  }
+
+  ::selection {
+    @apply bg-accent/30 text-white;
+  }
+}
+
+@layer components {
+  .text-gradient {
+    @apply bg-accent-gradient bg-clip-text text-transparent;
+  }
+
+  .card {
+    @apply rounded-2xl border border-white/5 bg-base-800/60 p-6 backdrop-blur-sm transition-colors duration-200;
+  }
+
+  .card-hover {
+    @apply hover:border-accent/40 hover:bg-base-800;
+  }
+
+  .chip {
+    @apply inline-flex items-center rounded-full border border-white/10 bg-base-800 px-3 py-1 text-sm text-slate-300;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-2 focus-visible:ring-offset-base-950;
+  }
+
+  .btn-primary {
+    @apply btn bg-accent text-white hover:bg-accent-soft;
+  }
+
+  .btn-ghost {
+    @apply btn border border-white/10 bg-transparent text-slate-200 hover:border-accent/50 hover:text-white;
+  }
+}
