@@ -30,18 +30,20 @@ export default function Hero() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-teal" />
               </span>
-              Open to a semester 6 internship
+              Computer Science @ BINUS University
             </span>
 
             <h1 className="text-4xl font-extrabold leading-[1.1] tracking-tight text-white sm:text-6xl">
               Hi, I&apos;m{' '}
               <span className="text-gradient">{profile.displayName}</span>.
               <br />
-              {profile.role}.
+              Computer Science Student &amp; Aspiring Software Developer
             </h1>
 
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-400">
-              {profile.tagline}
+              Computer Science student at BINUS University who enjoys building
+              practical software projects across web development, machine
+              learning, and computer vision.
             </p>
 
             {/* focus areas */}
@@ -81,7 +83,7 @@ export default function Hero() {
                 <pre className="overflow-x-auto text-[13px] leading-relaxed">
                   <code className="font-mono">
                     <span className="text-slate-500">const </span>
-                    <span className="text-accent-glow">student</span>
+                    <span className="text-accent-glow">developer</span>
                     <span className="text-slate-500"> = </span>
                     <span className="text-slate-300">{'{'}</span>
                     {'\n'}
@@ -94,32 +96,29 @@ export default function Hero() {
                     <span className="text-slate-500">,</span>
                     {'\n'}
                     {'  '}
+                    <span className="text-teal-soft">focus</span>
+                    <span className="text-slate-500">: [</span>
+                    {'\n'}
+                    {'    '}
+                    <span className="text-slate-300">&apos;Web Development&apos;</span>
+                    <span className="text-slate-500">,</span>
+                    {'\n'}
+                    {'    '}
+                    <span className="text-slate-300">&apos;Machine Learning&apos;</span>
+                    <span className="text-slate-500">,</span>
+                    {'\n'}
+                    {'    '}
+                    <span className="text-slate-300">&apos;Computer Vision&apos;</span>
+                    {'\n'}
+                    {'  '}
+                    <span className="text-slate-500">],</span>
+                    {'\n'}
+                    {'  '}
                     <span className="text-teal-soft">university</span>
                     <span className="text-slate-500">: </span>
                     <span className="text-slate-300">
                       &apos;{profile.university}&apos;
                     </span>
-                    <span className="text-slate-500">,</span>
-                    {'\n'}
-                    {'  '}
-                    <span className="text-teal-soft">major</span>
-                    <span className="text-slate-500">: </span>
-                    <span className="text-slate-300">
-                      &apos;{profile.major}&apos;
-                    </span>
-                    <span className="text-slate-500">,</span>
-                    {'\n'}
-                    {'  '}
-                    <span className="text-teal-soft">semester</span>
-                    <span className="text-slate-500">: </span>
-                    <span className="text-accent-glow">{profile.semester}</span>
-                    <span className="text-slate-500">,</span>
-                    {'\n'}
-                    {'  '}
-                    <span className="text-teal-soft">openToInternship</span>
-                    <span className="text-slate-500">: </span>
-                    <span className="text-accent-glow">true</span>
-                    <span className="text-slate-500">,</span>
                     {'\n'}
                     <span className="text-slate-300">{'}'}</span>
                   </code>
@@ -128,11 +127,10 @@ export default function Hero() {
             </div>
 
             {/* quick facts under the card */}
-            <dl className="mt-6 grid grid-cols-3 gap-3">
+            <dl className="mt-6 grid grid-cols-2 gap-3">
               {[
                 { dt: 'University', dd: 'BINUS' },
                 { dt: 'Major', dd: 'Computer Sci' },
-                { dt: 'Semester', dd: String(profile.semester) },
               ].map((f) => (
                 <div
                   key={f.dt}
