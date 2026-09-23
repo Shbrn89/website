@@ -24,6 +24,21 @@
   ::selection {
     @apply bg-accent/30 text-white;
   }
+
+  /* Custom scrollbar for a more premium feel */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-base-950;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full border-2 border-solid border-base-950 bg-base-700;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-accent/50;
+  }
 }
 
 @layer components {
@@ -31,16 +46,21 @@
     @apply bg-accent-gradient bg-clip-text text-transparent;
   }
 
+  /* Thin gradient hairline used above section eyebrows */
+  .eyebrow {
+    @apply mb-3 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-accent-soft;
+  }
+
   .card {
-    @apply rounded-2xl border border-white/5 bg-base-800/60 p-6 backdrop-blur-sm transition-colors duration-200;
+    @apply rounded-2xl border border-white/5 bg-base-800/60 p-6 backdrop-blur-sm transition-all duration-300;
   }
 
   .card-hover {
-    @apply hover:border-accent/40 hover:bg-base-800;
+    @apply hover:-translate-y-1 hover:border-accent/40 hover:bg-base-800 hover:shadow-glow;
   }
 
   .chip {
-    @apply inline-flex items-center rounded-full border border-white/10 bg-base-800 px-3 py-1 text-sm text-slate-300;
+    @apply inline-flex items-center rounded-full border border-white/10 bg-base-800/80 px-3 py-1 text-sm text-slate-300 backdrop-blur-sm;
   }
 
   .btn {
@@ -48,10 +68,21 @@
   }
 
   .btn-primary {
-    @apply btn bg-accent text-white hover:bg-accent-soft;
+    @apply btn bg-accent text-white shadow-glow hover:-translate-y-0.5 hover:bg-accent-soft;
   }
 
   .btn-ghost {
-    @apply btn border border-white/10 bg-transparent text-slate-200 hover:border-accent/50 hover:text-white;
+    @apply btn border border-white/10 bg-white/[0.02] text-slate-200 hover:border-accent/50 hover:text-white;
+  }
+
+  /* Gradient border wrapper: put content in a child with a dark bg */
+  .gradient-border {
+    @apply relative rounded-2xl p-px;
+    background-image: linear-gradient(
+      135deg,
+      rgba(129, 140, 248, 0.5),
+      rgba(45, 212, 191, 0.3),
+      rgba(129, 140, 248, 0.1)
+    );
   }
 }

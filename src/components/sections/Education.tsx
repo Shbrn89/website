@@ -5,7 +5,12 @@ import { education, relevantCoursework } from '../../data/portfolio'
 
 export default function Education() {
   return (
-    <Section id="education" eyebrow="Education" title="Where I'm studying">
+    <Section
+      id="education"
+      eyebrow="Education"
+      title="Where I'm studying"
+      className="bg-base-900/40"
+    >
       <div className="grid gap-10 lg:grid-cols-3">
         <div className="lg:col-span-2">
           <Timeline items={education} />

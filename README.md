@@ -52,6 +52,20 @@ and the whole site updates automatically — you rarely need to touch the
 components. Placeholder links are marked with `#` or `example.com`; replace
 them with your real GitHub, LinkedIn, and email when ready.
 
+### Featured projects
+
+The portfolio currently showcases these projects (edit them in the `projects`
+array of `src/data/portfolio.ts`):
+
+1. **Fashion Asset Marketplace** — Web Application
+2. **Cryptocurrency Trend Analysis using Machine Learning** — Machine Learning
+3. **Automatic Text Summarization using NLP** — Natural Language Processing
+4. **Real-Time Face Detection using Computer Vision** — Computer Vision
+
+Each project's `repoUrl` and `liveUrl` are **placeholders** (`'#'`). Replace them
+with your real GitHub repo and live demo links. Set a link to `''` (empty
+string) to hide that button.
+
 ### Where to put real details
 
 | What                | Edit in `portfolio.ts` |

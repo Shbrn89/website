@@ -7,9 +7,9 @@
  *  You almost never need to touch the React components — just edit the values
  *  below (text, links, lists) and the UI updates automatically.
  *
- *  Nothing here is invented: fill in real links, real projects, and real
- *  details as you build them. Placeholder links are marked with `#` or
- *  `mailto:` — replace them when you have the real ones.
+ *  Nothing here is invented. Where a real link isn't available yet, a
+ *  placeholder ('#' or 'example.com') is used — replace it when you have the
+ *  real GitHub repo or live demo URL.
  * ============================================================================
  */
 
@@ -22,15 +22,21 @@ export type Project = {
   title: string
   /** short one-line summary */
   summary: string
-  /** a few sentences describing what it does / what you learned */
+  /** a few sentences describing what it does */
   description: string
+  /** a few concrete, honest bullet points about the work */
+  highlights?: string[]
   /** tech used, shown as tags */
   tech: string[]
+  /** the main domain/discipline, shown as a badge, e.g. "Machine Learning" */
+  domain?: string
   /** optional links — leave empty string to hide the button */
   repoUrl?: string
   liveUrl?: string
-  /** small label shown at the top of the card, e.g. "Academic" / "Personal" */
+  /** whether this is an Academic or Personal project */
   type?: string
+  /** emoji/icon accent shown on the card */
+  accent?: string
 }
 
 export type TimelineItem = {
@@ -58,9 +64,11 @@ export const profile = {
   university: 'BINUS University',
   major: 'Computer Science',
   semester: 5,
+  // A couple of rotating role words used for emphasis in the hero
+  focusAreas: ['Web Development', 'Machine Learning', 'Computer Vision'],
   // Short tagline shown in the hero
   tagline:
-    'Computer Science student at BINUS University building academic and personal projects, and looking for a semester 6 internship.',
+    'Fifth-semester Computer Science student at BINUS University who builds academic and personal projects across web development, machine learning, and computer vision — now looking for a semester 6 internship.',
   // Location is optional — set to '' to hide it
   location: 'Indonesia',
 }
@@ -87,15 +95,15 @@ export const about = {
   // Write in first person. Keep it honest and student-focused.
   paragraphs: [
     "I'm a fifth-semester Computer Science student at BINUS University who enjoys turning ideas into working software. Most of what I know comes from coursework and building projects on my own time.",
-    "I'm especially interested in web development and writing clean, maintainable code. I like understanding how things work end to end — from the interface a user sees down to the logic behind it.",
+    'My interests span a few areas — building web applications, and exploring machine learning, natural language processing, and computer vision through hands-on projects. I like understanding how things work end to end, from the interface a user sees down to the logic and data behind it.',
     'Right now my focus is on strengthening my fundamentals, growing my project portfolio, and finding an internship where I can learn from experienced engineers and contribute to a real team.',
   ],
   // A few quick facts — keep these factual
   highlights: [
-    { label: 'Focus', value: 'Web Development' },
+    { label: 'Focus', value: 'Software & ML' },
     { label: 'Currently', value: 'Semester 5' },
-    { label: 'Learning', value: 'React & TypeScript' },
-    { label: 'Open to', value: 'Semester 6 Internship' },
+    { label: 'University', value: 'BINUS' },
+    { label: 'Open to', value: 'Sem 6 Internship' },
   ],
 }
 
@@ -108,34 +116,38 @@ export const skillGroups: SkillGroup[] = [
   {
     category: 'Languages',
     skills: [
+      { name: 'Python' },
       { name: 'TypeScript' },
       { name: 'JavaScript' },
       { name: 'Java' },
-      { name: 'Python' },
       { name: 'SQL' },
     ],
   },
   {
-    category: 'Frontend',
+    category: 'Web Development',
     skills: [
       { name: 'React' },
       { name: 'HTML' },
       { name: 'CSS' },
       { name: 'Tailwind CSS' },
+      { name: 'Vite' },
     ],
   },
   {
-    category: 'Tools & Workflow',
+    category: 'ML / Data',
+    skills: [
+      { name: 'Machine Learning' },
+      { name: 'NLP' },
+      { name: 'Computer Vision' },
+      { name: 'NumPy' },
+      { name: 'Pandas' },
+    ],
+  },
+  {
+    category: 'Tools & Foundations',
     skills: [
       { name: 'Git & GitHub' },
-      { name: 'Vite' },
       { name: 'VS Code' },
-      { name: 'Figma (basics)' },
-    ],
-  },
-  {
-    category: 'Foundations',
-    skills: [
       { name: 'Data Structures' },
       { name: 'Algorithms' },
       { name: 'OOP' },
@@ -147,39 +159,79 @@ export const skillGroups: SkillGroup[] = [
 /* -------------------------------------------------------------------------- */
 /*  5. FEATURED PROJECTS                                                      */
 /* -------------------------------------------------------------------------- */
-/*  Replace these with your real projects. Add or remove items freely.       */
-/*  Leave repoUrl / liveUrl as '' (or delete the line) to hide the button.   */
+/*  These are real projects. Replace the '#' repoUrl / liveUrl placeholders   */
+/*  with your actual GitHub repo and live demo links when ready.              */
+/*  (Leave a link as '' to hide that button entirely.)                        */
 
 export const projects: Project[] = [
   {
-    title: 'Personal Portfolio Website',
-    type: 'Personal',
-    summary: 'The site you are looking at right now.',
+    title: 'Fashion Asset Marketplace',
+    type: 'Project',
+    domain: 'Web Application',
+    accent: '🛍️',
+    summary: 'A marketplace platform for buying and selling fashion assets.',
     description:
-      'A responsive personal portfolio built to present myself for internship applications. Built with reusable components and a centralized content file so it is easy to keep updated.',
-    tech: ['React', 'TypeScript', 'Vite', 'Tailwind CSS'],
-    repoUrl: '',
-    liveUrl: '',
+      'A web-based marketplace concept where users can browse, list, and trade fashion assets. Focused on building a clean, usable interface and the core flows of a marketplace.',
+    highlights: [
+      'Designed the browsing and listing experience for fashion items',
+      'Structured the app into reusable, maintainable components',
+      'Practised end-to-end product thinking, from UI to data flow',
+    ],
+    tech: ['Web', 'Frontend', 'UI/UX'],
+    repoUrl: '#', // TODO: replace with your GitHub repo URL
+    liveUrl: '#', // TODO: replace with your live demo URL (or set to '')
   },
   {
-    title: 'Project Title',
-    type: 'Academic',
-    summary: 'One-line summary of what this project does.',
+    title: 'Cryptocurrency Trend Analysis using Machine Learning',
+    type: 'Project',
+    domain: 'Machine Learning',
+    accent: '📈',
+    summary:
+      'Analysing cryptocurrency price trends with machine learning techniques.',
     description:
-      'Describe the problem this project solves, your role, and what you learned building it. Keep it honest and specific.',
-    tech: ['Add', 'Your', 'Tech'],
-    repoUrl: '',
-    liveUrl: '',
+      'An exploration of how machine learning can be applied to historical cryptocurrency data to study and model market trends. Covered data collection, preprocessing, and building models to analyse patterns.',
+    highlights: [
+      'Collected and preprocessed historical cryptocurrency data',
+      'Applied machine learning techniques to study price trends',
+      'Explored model evaluation and interpretation of results',
+    ],
+    tech: ['Python', 'Machine Learning', 'Pandas', 'NumPy'],
+    repoUrl: '#', // TODO: replace with your GitHub repo URL
+    liveUrl: '', // no live demo — button hidden
   },
   {
-    title: 'Project Title',
-    type: 'Personal',
-    summary: 'One-line summary of what this project does.',
+    title: 'Automatic Text Summarization using NLP',
+    type: 'Project',
+    domain: 'Natural Language Processing',
+    accent: '📝',
+    summary: 'Generating concise summaries from longer text using NLP.',
     description:
-      'Describe the problem this project solves, your role, and what you learned building it. Keep it honest and specific.',
-    tech: ['Add', 'Your', 'Tech'],
-    repoUrl: '',
-    liveUrl: '',
+      'A natural language processing project that automatically produces short summaries from longer documents. Explored text preprocessing and summarization techniques to condense content while keeping the key meaning.',
+    highlights: [
+      'Built a pipeline to clean and process raw text input',
+      'Implemented automatic summarization using NLP techniques',
+      'Compared how different approaches affect summary quality',
+    ],
+    tech: ['Python', 'NLP', 'Text Processing'],
+    repoUrl: '#', // TODO: replace with your GitHub repo URL
+    liveUrl: '', // no live demo — button hidden
+  },
+  {
+    title: 'Real-Time Face Detection using Computer Vision',
+    type: 'Project',
+    domain: 'Computer Vision',
+    accent: '👁️',
+    summary: 'Detecting faces in a live video stream in real time.',
+    description:
+      'A computer vision project that detects human faces from a live camera feed in real time. Focused on processing video frames efficiently and drawing detections on the stream as it runs.',
+    highlights: [
+      'Processed live video frames from a camera feed',
+      'Implemented real-time face detection on each frame',
+      'Visualised detections directly on the video stream',
+    ],
+    tech: ['Python', 'Computer Vision', 'OpenCV'],
+    repoUrl: '#', // TODO: replace with your GitHub repo URL
+    liveUrl: '', // no live demo — button hidden
   },
 ]
 
@@ -192,7 +244,7 @@ export const education: TimelineItem[] = [
     title: 'BINUS University',
     meta: 'Bachelor of Computer Science · Currently Semester 5',
     description:
-      'Studying core Computer Science topics including data structures, algorithms, object-oriented programming, databases, and software development.',
+      'Studying core Computer Science topics including data structures, algorithms, object-oriented programming, databases, and software development, alongside hands-on project work in web development, machine learning, and computer vision.',
   },
 ]
 
@@ -203,6 +255,7 @@ export const relevantCoursework: string[] = [
   'Database Systems',
   'Web Programming',
   'Software Engineering',
+  'Artificial Intelligence',
 ]
 
 /* -------------------------------------------------------------------------- */
@@ -215,19 +268,19 @@ export const learningJourney: TimelineItem[] = [
     title: 'Building strong fundamentals',
     meta: 'Ongoing',
     description:
-      'Deepening my understanding of data structures, algorithms, and clean code through coursework and practice.',
+      'Deepening my understanding of data structures, algorithms, and clean code through coursework and consistent practice.',
   },
   {
-    title: 'Learning modern web development',
+    title: 'Exploring AI, ML & computer vision',
     meta: 'In progress',
     description:
-      'Getting hands-on with React, TypeScript, and Tailwind CSS by building small projects like this portfolio.',
+      'Applying what I learn through projects in machine learning, natural language processing, and computer vision to see how theory works in practice.',
   },
   {
-    title: 'Growing my project portfolio',
-    meta: 'Next',
+    title: 'Building real web applications',
+    meta: 'In progress',
     description:
-      'Turning course concepts into complete, shareable projects on GitHub to demonstrate what I can build.',
+      'Getting hands-on with React, TypeScript, and Tailwind CSS to turn ideas into complete, usable web applications.',
   },
   {
     title: 'Contributing on a real team',
@@ -247,9 +300,9 @@ export const availability = {
   description:
     'I am looking for a Computer Science internship for semester 6 where I can contribute to real projects and grow as an engineer. I am eager to learn, reliable, and comfortable working as part of a team.',
   details: [
-    { label: 'Seeking', value: 'Software / Web Development Internship' },
+    { label: 'Seeking', value: 'Software / ML Internship' },
     { label: 'Timing', value: 'Semester 6' },
-    { label: 'Interests', value: 'Frontend & Full-stack' },
+    { label: 'Interests', value: 'Web, ML & Computer Vision' },
     { label: 'Location', value: 'On-site, Hybrid, or Remote' },
   ],
 }
@@ -261,7 +314,7 @@ export const availability = {
 
 export const contact = {
   intro:
-    "I'd love to hear about internship opportunities or just connect. Feel free to reach out.",
+    "I'd love to hear about internship opportunities or just connect. Feel free to reach out through any of the channels below.",
   links: [
     {
       label: 'Email',
@@ -272,13 +325,13 @@ export const contact = {
     {
       label: 'GitHub',
       value: 'github.com/your-username',
-      href: '#',
+      href: '#', // TODO: replace with your GitHub profile URL
       icon: 'github',
     },
     {
       label: 'LinkedIn',
       value: 'linkedin.com/in/your-username',
-      href: '#',
+      href: '#', // TODO: replace with your LinkedIn profile URL
       icon: 'linkedin',
     },
     {
