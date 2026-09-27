@@ -65,7 +65,6 @@ is missing, the site shows a plain placeholder instead of a broken image.
 Put screenshots under `public/projects/` using the filenames referenced in
 `src/data/portfolio.ts` (see `public/projects/README.md`):
 
-- `project-fashion.png`
 - `project-crypto.png`
 - `project-nlp.png`
 - `project-face-detection.png`

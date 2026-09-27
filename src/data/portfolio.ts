@@ -142,23 +142,8 @@ export const skillGroups: SkillGroup[] = [
 export const projects: Project[] = [
   {
     number: '01',
-    title: 'Fashion Asset Marketplace',
-    featured: true,
-    description:
-      'A web marketplace concept for browsing, listing, and trading fashion assets.',
-    highlights: [
-      'Built the browsing, listing, and item detail flows as a full front-end product',
-      'Structured the UI into reusable React components with TypeScript',
-      'Styled the interface with Tailwind CSS, focused on layout and usability',
-    ],
-    tech: ['React', 'TypeScript', 'Tailwind CSS'],
-    image: '/projects/project-fashion.png',
-    repoUrl: '#', // TODO: replace with the real GitHub repo URL
-    liveUrl: '',
-  },
-  {
-    number: '02',
     title: 'Cryptocurrency Trend Analysis',
+    featured: true,
     description:
       'Applies machine learning to historical cryptocurrency price data to study market trends.',
     highlights: [
@@ -172,7 +157,7 @@ export const projects: Project[] = [
     liveUrl: '',
   },
   {
-    number: '03',
+    number: '02',
     title: 'Automatic Text Summarization',
     description:
       'An NLP project that generates short summaries from longer documents.',
@@ -186,7 +171,7 @@ export const projects: Project[] = [
     liveUrl: '',
   },
   {
-    number: '04',
+    number: '03',
     title: 'Real-Time Face Detection',
     description:
       'A computer vision project that detects faces from a live camera feed in real time.',
