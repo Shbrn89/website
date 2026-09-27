@@ -23,26 +23,18 @@ export default function Section({
   className = '',
 }: SectionProps) {
   return (
-    <section id={id} className={`py-20 sm:py-24 ${className}`}>
+    <section id={id} className={`border-t border-white/5 py-20 sm:py-24 ${className}`}>
       <Container>
         {(eyebrow || title || description) && (
           <div className="mb-12 max-w-2xl">
-            {eyebrow && (
-              <p className="mb-3 flex items-center gap-3 text-sm font-semibold uppercase tracking-widest text-accent-soft">
-                <span
-                  aria-hidden
-                  className="h-px w-8 bg-gradient-to-r from-accent to-transparent"
-                />
-                {eyebrow}
-              </p>
-            )}
+            {eyebrow && <p className="eyebrow">{eyebrow}</p>}
             {title && (
-              <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              <h2 className="font-serif text-3xl tracking-tight text-white sm:text-4xl">
                 {title}
               </h2>
             )}
             {description && (
-              <p className="mt-4 text-base leading-relaxed text-slate-400">
+              <p className="mt-4 text-base leading-relaxed text-neutral-400">
                 {description}
               </p>
             )}

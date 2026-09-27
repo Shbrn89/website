@@ -8,49 +8,36 @@
  *  below (text, links, lists) and the UI updates automatically.
  *
  *  Nothing here is invented. Where a real link isn't available yet, a
- *  placeholder ('#' or 'example.com') is used — replace it when you have the
- *  real GitHub repo or live demo URL.
+ *  placeholder ('#') is used — replace it when you have the real URL.
  * ============================================================================
  */
 
 export type NavLink = { label: string; href: string }
 
-export type Skill = { name: string }
-export type SkillGroup = { category: string; skills: Skill[] }
+export type SkillGroup = { category: string; skills: string[] }
 
 export type Project = {
+  /** display order / project number shown on the card, e.g. "01" */
+  number: string
   title: string
-  /** short one-line summary */
-  summary: string
-  /** a few sentences describing what it does */
+  /** one or two natural sentences describing what it does */
   description: string
-  /** a few concrete, honest bullet points about the work */
-  highlights?: string[]
-  /** tech used, shown as tags */
+  /** tech actually used in the project */
   tech: string[]
-  /** the main domain/discipline, shown as a badge, e.g. "Machine Learning" */
-  domain?: string
-  /** optional links — leave empty string to hide the button */
-  repoUrl?: string
-  liveUrl?: string
-  /** whether this is an Academic or Personal project */
-  type?: string
-  /** emoji/icon accent shown on the card */
-  accent?: string
+  /** screenshot path under /public/projects — shown if the file exists */
+  image: string
+  /** set true for the single featured project shown in the large layout slot */
+  featured?: boolean
+  /** GitHub repo — use '#' as a placeholder until the real repo is public */
+  repoUrl: string
+  /** live demo — leave '' when there is no real deployed demo (hides the button) */
+  liveUrl: string
 }
 
 export type TimelineItem = {
   title: string
   meta: string
   description: string
-}
-
-export type ContactLink = {
-  label: string
-  value: string
-  href: string
-  /** icon key handled in the Contact component */
-  icon: 'email' | 'github' | 'linkedin' | 'location'
 }
 
 /* -------------------------------------------------------------------------- */
@@ -60,30 +47,39 @@ export type ContactLink = {
 export const profile = {
   fullName: 'Ahmad Khoirul Shobirin',
   displayName: 'Shobirin',
-  role: 'Computer Science Student',
   university: 'BINUS University',
   major: 'Computer Science',
-  semester: 5,
-  // A couple of rotating role words used for emphasis in the hero
-  focusAreas: ['Web Development', 'Machine Learning', 'Computer Vision'],
-  // Short tagline shown in the hero
-  tagline:
-    'Fifth-semester Computer Science student at BINUS University who builds academic and personal projects across web development, machine learning, and computer vision — now looking for a semester 6 internship.',
-  // Location is optional — set to '' to hide it
   location: 'Indonesia',
+
+  // Shown in the Hero as a small label above the heading.
+  label: 'Computer Science @ BINUS University',
+
+  // Short first-person statement, shown large in the Hero.
+  statement: "I build software, explore data, and learn by building.",
+
+  // One supporting sentence under the statement.
+  summary:
+    'Computer Science student focused on software development, machine learning, and practical web applications.',
+
+  // Portrait photo — place your own photo at /public/profile.jpg
+  photo: '/profile.jpg',
+
+  // Social / external links. Replace '#' with your real URLs.
+  githubUrl: '#', // TODO: replace with your GitHub profile URL
+  linkedinUrl: '#', // TODO: replace with your LinkedIn profile URL
+  resumeUrl: '#', // TODO: replace with a link to your resume (PDF)
+  email: 'your.email@example.com', // TODO: replace with your real email
 }
 
 /* -------------------------------------------------------------------------- */
-/*  2. NAVBAR LINKS                                                           */
+/*  2. NAVIGATION                                                             */
 /* -------------------------------------------------------------------------- */
 
 export const navLinks: NavLink[] = [
   { label: 'About', href: '#about' },
-  { label: 'Skills', href: '#skills' },
   { label: 'Projects', href: '#projects' },
+  { label: 'Skills', href: '#skills' },
   { label: 'Education', href: '#education' },
-  { label: 'Journey', href: '#journey' },
-  { label: 'Availability', href: '#availability' },
   { label: 'Contact', href: '#contact' },
 ]
 
@@ -92,146 +88,87 @@ export const navLinks: NavLink[] = [
 /* -------------------------------------------------------------------------- */
 
 export const about = {
-  // Write in first person. Keep it honest and student-focused.
   paragraphs: [
-    "I'm a fifth-semester Computer Science student at BINUS University who enjoys turning ideas into working software. Most of what I know comes from coursework and building projects on my own time.",
-    'My interests span a few areas — building web applications, and exploring machine learning, natural language processing, and computer vision through hands-on projects. I like understanding how things work end to end, from the interface a user sees down to the logic and data behind it.',
-    'Right now my focus is on strengthening my fundamentals, growing my project portfolio, and finding an internship where I can learn from experienced engineers and contribute to a real team.',
-  ],
-  // A few quick facts — keep these factual
-  highlights: [
-    { label: 'Focus', value: 'Software & ML' },
-    { label: 'Currently', value: 'Semester 5' },
-    { label: 'University', value: 'BINUS' },
-    { label: 'Open to', value: 'Sem 6 Internship' },
+    "I'm currently studying Computer Science at BINUS University. Most of what I learn comes from building projects — from machine learning experiments and computer vision to web applications.",
+    'I enjoy understanding how things work, building them, and improving them along the way.',
   ],
 }
 
 /* -------------------------------------------------------------------------- */
 /*  4. SKILLS                                                                 */
 /* -------------------------------------------------------------------------- */
-/*  Only list what you're genuinely comfortable with or actively learning.   */
+/*  Only technologies actually used in the projects below or in coursework.  */
 
 export const skillGroups: SkillGroup[] = [
   {
     category: 'Languages',
-    skills: [
-      { name: 'Python' },
-      { name: 'TypeScript' },
-      { name: 'JavaScript' },
-      { name: 'Java' },
-      { name: 'SQL' },
-    ],
+    skills: ['Python', 'TypeScript', 'JavaScript', 'Java', 'SQL'],
   },
   {
     category: 'Web Development',
-    skills: [
-      { name: 'React' },
-      { name: 'HTML' },
-      { name: 'CSS' },
-      { name: 'Tailwind CSS' },
-      { name: 'Vite' },
-    ],
+    skills: ['React', 'HTML', 'CSS', 'Tailwind CSS', 'Vite'],
   },
   {
-    category: 'ML / Data',
-    skills: [
-      { name: 'Machine Learning' },
-      { name: 'NLP' },
-      { name: 'Computer Vision' },
-      { name: 'NumPy' },
-      { name: 'Pandas' },
-    ],
+    category: 'Machine Learning & Data',
+    skills: ['Machine Learning', 'NLP', 'Pandas', 'NumPy'],
   },
   {
-    category: 'Tools & Foundations',
-    skills: [
-      { name: 'Git & GitHub' },
-      { name: 'VS Code' },
-      { name: 'Data Structures' },
-      { name: 'Algorithms' },
-      { name: 'OOP' },
-      { name: 'Databases' },
-    ],
+    category: 'Computer Vision',
+    skills: ['OpenCV', 'Real-Time Image Processing'],
+  },
+  {
+    category: 'Tools',
+    skills: ['Git', 'GitHub', 'VS Code'],
   },
 ]
 
 /* -------------------------------------------------------------------------- */
-/*  5. FEATURED PROJECTS                                                      */
+/*  5. PROJECTS                                                               */
 /* -------------------------------------------------------------------------- */
-/*  These are real projects. Replace the '#' repoUrl / liveUrl placeholders   */
-/*  with your actual GitHub repo and live demo links when ready.              */
-/*  (Leave a link as '' to hide that button entirely.)                        */
+/*  Real projects only. Replace repoUrl with the real GitHub URL when ready.  */
+/*  liveUrl stays '' until there is an actual deployed demo.                  */
 
 export const projects: Project[] = [
   {
+    number: '01',
     title: 'Fashion Asset Marketplace',
-    type: 'Project',
-    domain: 'Web Application',
-    accent: '🛍️',
-    summary: 'A marketplace platform for buying and selling fashion assets.',
+    featured: true,
     description:
-      'A web-based marketplace concept where users can browse, list, and trade fashion assets. Focused on building a clean, usable interface and the core flows of a marketplace.',
-    highlights: [
-      'Designed the browsing and listing experience for fashion items',
-      'Structured the app into reusable, maintainable components',
-      'Practised end-to-end product thinking, from UI to data flow',
-    ],
-    tech: ['Web', 'Frontend', 'UI/UX'],
-    repoUrl: '#', // TODO: replace with your GitHub repo URL
-    liveUrl: '#', // TODO: replace with your live demo URL (or set to '')
+      'A web marketplace concept for browsing, listing, and trading fashion assets, built to practice structuring a full front-end product from the browsing flow down to individual listing pages.',
+    tech: ['React', 'TypeScript', 'Tailwind CSS'],
+    image: '/projects/project-fashion.png',
+    repoUrl: '#', // TODO: replace with the real GitHub repo URL
+    liveUrl: '',
   },
   {
-    title: 'Cryptocurrency Trend Analysis using Machine Learning',
-    type: 'Project',
-    domain: 'Machine Learning',
-    accent: '📈',
-    summary:
-      'Analysing cryptocurrency price trends with machine learning techniques.',
+    number: '02',
+    title: 'Cryptocurrency Trend Analysis',
     description:
-      'An exploration of how machine learning can be applied to historical cryptocurrency data to study and model market trends. Covered data collection, preprocessing, and building models to analyse patterns.',
-    highlights: [
-      'Collected and preprocessed historical cryptocurrency data',
-      'Applied machine learning techniques to study price trends',
-      'Explored model evaluation and interpretation of results',
-    ],
+      'Applies machine learning to historical cryptocurrency price data to study and model market trends, covering data collection, preprocessing, and model evaluation.',
     tech: ['Python', 'Machine Learning', 'Pandas', 'NumPy'],
-    repoUrl: '#', // TODO: replace with your GitHub repo URL
-    liveUrl: '', // no live demo — button hidden
+    image: '/projects/project-crypto.png',
+    repoUrl: '#', // TODO: replace with the real GitHub repo URL
+    liveUrl: '',
   },
   {
-    title: 'Automatic Text Summarization using NLP',
-    type: 'Project',
-    domain: 'Natural Language Processing',
-    accent: '📝',
-    summary: 'Generating concise summaries from longer text using NLP.',
+    number: '03',
+    title: 'Automatic Text Summarization',
     description:
-      'A natural language processing project that automatically produces short summaries from longer documents. Explored text preprocessing and summarization techniques to condense content while keeping the key meaning.',
-    highlights: [
-      'Built a pipeline to clean and process raw text input',
-      'Implemented automatic summarization using NLP techniques',
-      'Compared how different approaches affect summary quality',
-    ],
-    tech: ['Python', 'NLP', 'Text Processing'],
-    repoUrl: '#', // TODO: replace with your GitHub repo URL
-    liveUrl: '', // no live demo — button hidden
+      'An NLP project that generates short summaries from longer documents, using text preprocessing and summarization techniques to condense content while keeping its meaning.',
+    tech: ['Python', 'NLP'],
+    image: '/projects/project-nlp.png',
+    repoUrl: '#', // TODO: replace with the real GitHub repo URL
+    liveUrl: '',
   },
   {
-    title: 'Real-Time Face Detection using Computer Vision',
-    type: 'Project',
-    domain: 'Computer Vision',
-    accent: '👁️',
-    summary: 'Detecting faces in a live video stream in real time.',
+    number: '04',
+    title: 'Real-Time Face Detection',
     description:
-      'A computer vision project that detects human faces from a live camera feed in real time. Focused on processing video frames efficiently and drawing detections on the stream as it runs.',
-    highlights: [
-      'Processed live video frames from a camera feed',
-      'Implemented real-time face detection on each frame',
-      'Visualised detections directly on the video stream',
-    ],
-    tech: ['Python', 'Computer Vision', 'OpenCV'],
-    repoUrl: '#', // TODO: replace with your GitHub repo URL
-    liveUrl: '', // no live demo — button hidden
+      'A computer vision project that detects faces from a live camera feed in real time, processing video frames and drawing detections directly on the stream.',
+    tech: ['Python', 'OpenCV', 'Computer Vision'],
+    image: '/projects/project-face-detection.png',
+    repoUrl: '#', // TODO: replace with the real GitHub repo URL
+    liveUrl: '',
   },
 ]
 
@@ -239,16 +176,14 @@ export const projects: Project[] = [
 /*  6. EDUCATION                                                              */
 /* -------------------------------------------------------------------------- */
 
-export const education: TimelineItem[] = [
-  {
-    title: 'BINUS University',
-    meta: 'Bachelor of Computer Science · Currently Semester 5',
-    description:
-      'Studying core Computer Science topics including data structures, algorithms, object-oriented programming, databases, and software development, alongside hands-on project work in web development, machine learning, and computer vision.',
-  },
-]
+export const education = {
+  university: 'BINUS University',
+  program: 'Computer Science',
+  description:
+    'Studying core Computer Science topics — data structures, algorithms, object-oriented programming, databases, and software engineering.',
+}
 
-// Optional list of relevant coursework (factual — from your program).
+// Optional list of relevant coursework (factual — from the program).
 export const relevantCoursework: string[] = [
   'Data Structures & Algorithms',
   'Object-Oriented Programming',
@@ -259,92 +194,16 @@ export const relevantCoursework: string[] = [
 ]
 
 /* -------------------------------------------------------------------------- */
-/*  7. LEARNING JOURNEY                                                       */
+/*  7. CONTACT                                                                */
 /* -------------------------------------------------------------------------- */
-/*  A simple timeline of how you are growing. Keep it aspirational but real.  */
-
-export const learningJourney: TimelineItem[] = [
-  {
-    title: 'Building strong fundamentals',
-    meta: 'Ongoing',
-    description:
-      'Deepening my understanding of data structures, algorithms, and clean code through coursework and consistent practice.',
-  },
-  {
-    title: 'Exploring AI, ML & computer vision',
-    meta: 'In progress',
-    description:
-      'Applying what I learn through projects in machine learning, natural language processing, and computer vision to see how theory works in practice.',
-  },
-  {
-    title: 'Building real web applications',
-    meta: 'In progress',
-    description:
-      'Getting hands-on with React, TypeScript, and Tailwind CSS to turn ideas into complete, usable web applications.',
-  },
-  {
-    title: 'Contributing on a real team',
-    meta: 'Goal',
-    description:
-      'Finding a semester 6 internship where I can apply my skills, learn from experienced engineers, and add real value.',
-  },
-]
-
-/* -------------------------------------------------------------------------- */
-/*  8. INTERNSHIP AVAILABILITY                                                */
-/* -------------------------------------------------------------------------- */
-
-export const availability = {
-  status: 'Open to internships',
-  headline: 'Available for a Semester 6 Internship',
-  description:
-    'I am looking for a Computer Science internship for semester 6 where I can contribute to real projects and grow as an engineer. I am eager to learn, reliable, and comfortable working as part of a team.',
-  details: [
-    { label: 'Seeking', value: 'Software / ML Internship' },
-    { label: 'Timing', value: 'Semester 6' },
-    { label: 'Interests', value: 'Web, ML & Computer Vision' },
-    { label: 'Location', value: 'On-site, Hybrid, or Remote' },
-  ],
-}
-
-/* -------------------------------------------------------------------------- */
-/*  9. CONTACT                                                                */
-/* -------------------------------------------------------------------------- */
-/*  Replace the placeholder values below with your real details.             */
 
 export const contact = {
-  intro:
-    "I'd love to hear about internship opportunities or just connect. Feel free to reach out through any of the channels below.",
-  links: [
-    {
-      label: 'Email',
-      value: 'your.email@example.com',
-      href: 'mailto:your.email@example.com',
-      icon: 'email',
-    },
-    {
-      label: 'GitHub',
-      value: 'github.com/your-username',
-      href: '#', // TODO: replace with your GitHub profile URL
-      icon: 'github',
-    },
-    {
-      label: 'LinkedIn',
-      value: 'linkedin.com/in/your-username',
-      href: '#', // TODO: replace with your LinkedIn profile URL
-      icon: 'linkedin',
-    },
-    {
-      label: 'Location',
-      value: profile.location,
-      href: '#',
-      icon: 'location',
-    },
-  ] as ContactLink[],
+  heading: "Let's build something.",
+  text: "I'm open to internship opportunities, software projects, and interesting technical challenges.",
 }
 
 /* -------------------------------------------------------------------------- */
-/*  10. FOOTER                                                                */
+/*  8. FOOTER                                                                 */
 /* -------------------------------------------------------------------------- */
 
 export const footer = {

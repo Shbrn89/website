@@ -1,118 +1,106 @@
 import Section from '../ui/Section'
 import Tag from '../ui/Tag'
+import ProjectImage from '../ui/ProjectImage'
 import { ArrowUpRightIcon, GitHubIcon } from '../ui/icons'
-import { projects } from '../../data/portfolio'
+import { projects, type Project } from '../../data/portfolio'
+
+function ProjectLinks({ project }: { project: Project }) {
+  if (!project.repoUrl && !project.liveUrl) return null
+  return (
+    <div className="mt-4 flex flex-wrap items-center gap-4 text-sm">
+      {project.repoUrl && (
+        <a
+          href={project.repoUrl}
+          target={project.repoUrl.startsWith('http') ? '_blank' : undefined}
+          rel={project.repoUrl.startsWith('http') ? 'noreferrer' : undefined}
+          className="inline-flex items-center gap-1.5 text-neutral-300 transition-colors hover:text-white"
+        >
+          <GitHubIcon width={15} height={15} />
+          GitHub
+        </a>
+      )}
+      {project.liveUrl && (
+        <a
+          href={project.liveUrl}
+          target={project.liveUrl.startsWith('http') ? '_blank' : undefined}
+          rel={project.liveUrl.startsWith('http') ? 'noreferrer' : undefined}
+          className="inline-flex items-center gap-1.5 text-neutral-300 transition-colors hover:text-white"
+        >
+          <ArrowUpRightIcon width={15} height={15} />
+          Live Demo
+        </a>
+      )}
+    </div>
+  )
+}
 
 export default function Projects() {
+  const featured = projects.find((p) => p.featured) ?? projects[0]
+  const rest = projects.filter((p) => p !== featured)
+
   return (
     <Section
       id="projects"
-      eyebrow="Featured projects"
-      title="Things I've built"
-      description="A selection of academic and personal projects across web development, machine learning, NLP, and computer vision. Repo and demo links are placeholders for now — I'll point them at the real sources soon."
+      eyebrow="01 — Projects"
+      title="Selected Projects"
+      description="A selection of projects I've built while studying Computer Science."
     >
-      <div className="grid gap-6 md:grid-cols-2">
-        {projects.map((project, i) => (
+      {/* Featured project */}
+      <article className="grid gap-8 border border-white/10 p-6 sm:p-8 lg:grid-cols-2 lg:gap-10">
+        <ProjectImage
+          src={featured.image}
+          alt={featured.title}
+          className="aspect-[16/10] lg:order-2"
+        />
+        <div className="flex flex-col lg:order-1">
+          <span className="font-mono text-xs text-accent">
+            {featured.number}
+          </span>
+          <h3 className="mt-3 font-serif text-2xl text-white">
+            {featured.title}
+          </h3>
+          <p className="mt-3 text-sm leading-relaxed text-neutral-400">
+            {featured.description}
+          </p>
+          <div className="mt-5 flex flex-wrap gap-2">
+            {featured.tech.map((t) => (
+              <Tag key={t}>{t}</Tag>
+            ))}
+          </div>
+          <div className="mt-auto pt-5">
+            <ProjectLinks project={featured} />
+          </div>
+        </div>
+      </article>
+
+      {/* Remaining projects */}
+      <div className="mt-8 grid gap-6 sm:grid-cols-2">
+        {rest.map((project) => (
           <article
-            key={`${project.title}-${i}`}
-            className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/5 bg-base-800/60 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-glow"
+            key={project.title}
+            className="flex flex-col border border-white/10 p-6"
           >
-            {/* Accent header band */}
-            <div className="relative flex items-center justify-between gap-4 border-b border-white/5 bg-gradient-to-br from-accent/10 via-transparent to-teal/10 px-6 py-5">
-              <div className="flex items-center gap-3">
-                {project.accent && (
-                  <span
-                    aria-hidden
-                    className="grid h-11 w-11 place-items-center rounded-xl border border-white/10 bg-base-900/70 text-xl"
-                  >
-                    {project.accent}
-                  </span>
-                )}
-                <div>
-                  {project.domain && (
-                    <span className="text-[11px] font-semibold uppercase tracking-wider text-accent-glow">
-                      {project.domain}
-                    </span>
-                  )}
-                  {project.type && (
-                    <p className="text-xs text-slate-500">{project.type}</p>
-                  )}
-                </div>
-              </div>
+            <ProjectImage
+              src={project.image}
+              alt={project.title}
+              className="aspect-[16/10]"
+            />
+            <span className="mt-5 font-mono text-xs text-accent">
+              {project.number}
+            </span>
+            <h3 className="mt-2 font-serif text-lg text-white">
+              {project.title}
+            </h3>
+            <p className="mt-2 text-sm leading-relaxed text-neutral-400">
+              {project.description}
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {project.tech.map((t) => (
+                <Tag key={t}>{t}</Tag>
+              ))}
             </div>
-
-            {/* Body */}
-            <div className="flex flex-1 flex-col p-6">
-              <h3 className="text-lg font-bold leading-snug text-white">
-                {project.title}
-              </h3>
-              <p className="mt-1.5 text-sm text-slate-500">{project.summary}</p>
-              <p className="mt-3 text-sm leading-relaxed text-slate-400">
-                {project.description}
-              </p>
-
-              {project.highlights && project.highlights.length > 0 && (
-                <ul className="mt-4 space-y-2">
-                  {project.highlights.map((h) => (
-                    <li
-                      key={h}
-                      className="flex gap-2.5 text-sm leading-relaxed text-slate-400"
-                    >
-                      <span
-                        aria-hidden
-                        className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-gradient"
-                      />
-                      <span>{h}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
-
-              <div className="mt-5 flex flex-wrap gap-2">
-                {project.tech.map((t) => (
-                  <Tag key={t}>{t}</Tag>
-                ))}
-              </div>
-
-              {/* Links — buttons render whenever a (placeholder) URL is set */}
-              {(project.repoUrl || project.liveUrl) && (
-                <div className="mt-auto flex flex-wrap items-center gap-3 border-t border-white/5 pt-5">
-                  {project.repoUrl && (
-                    <a
-                      href={project.repoUrl}
-                      target={
-                        project.repoUrl.startsWith('http') ? '_blank' : undefined
-                      }
-                      rel={
-                        project.repoUrl.startsWith('http')
-                          ? 'noreferrer'
-                          : undefined
-                      }
-                      className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.02] px-3.5 py-2 text-sm font-medium text-slate-200 transition-colors hover:border-accent/50 hover:text-white"
-                    >
-                      <GitHubIcon width={16} height={16} />
-                      GitHub
-                    </a>
-                  )}
-                  {project.liveUrl && (
-                    <a
-                      href={project.liveUrl}
-                      target={
-                        project.liveUrl.startsWith('http') ? '_blank' : undefined
-                      }
-                      rel={
-                        project.liveUrl.startsWith('http')
-                          ? 'noreferrer'
-                          : undefined
-                      }
-                      className="inline-flex items-center gap-2 rounded-lg bg-accent/15 px-3.5 py-2 text-sm font-medium text-accent-glow transition-colors hover:bg-accent/25 hover:text-white"
-                    >
-                      <ArrowUpRightIcon width={16} height={16} />
-                      Live Demo
-                    </a>
-                  )}
-                </div>
-              )}
+            <div className="mt-auto pt-4">
+              <ProjectLinks project={project} />
             </div>
           </article>
         ))}

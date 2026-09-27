@@ -1,23 +1,22 @@
 # Shobirin — Personal Portfolio
 
-A professional, modern, dark-theme personal portfolio for **Ahmad Khoirul Shobirin**
-(displayed as *Shobirin*), a Computer Science student at BINUS University
-applying for a semester 6 internship.
+A personal portfolio for **Ahmad Khoirul Shobirin** (*Shobirin*), a Computer
+Science student at BINUS University, built for internship applications.
 
-Built with **React + TypeScript + Vite + Tailwind CSS**.
+Built with **React + TypeScript + Vite + Tailwind CSS**. Dark theme, editorial
+typography, restrained accent color — no gradients, glassmorphism, or
+percentage bars.
 
 ## Sections
 
-1. Navbar (sticky, responsive with mobile menu)
-2. Hero
-3. About Me
-4. Skills
-5. Featured Projects
+1. Navbar
+2. Hero (with portrait photo)
+3. Selected Projects
+4. About
+5. Skills
 6. Education
-7. Learning Journey
-8. Internship Availability
-9. Contact
-10. Footer
+7. Contact
+8. Footer
 
 ## Getting started
 
@@ -47,59 +46,79 @@ All the text, links, projects, and details live in **one file**:
 src/data/portfolio.ts
 ```
 
-Edit the values there (name, about text, skills, projects, contact links, etc.)
-and the whole site updates automatically — you rarely need to touch the
-components. Placeholder links are marked with `#` or `example.com`; replace
-them with your real GitHub, LinkedIn, and email when ready.
+Edit the values there and the whole site updates automatically — you rarely
+need to touch the components.
 
-### Featured projects
+### Your photo
 
-The portfolio currently showcases these projects (edit them in the `projects`
-array of `src/data/portfolio.ts`):
+Put your photo at:
 
-1. **Fashion Asset Marketplace** — Web Application
-2. **Cryptocurrency Trend Analysis using Machine Learning** — Machine Learning
-3. **Automatic Text Summarization using NLP** — Natural Language Processing
-4. **Real-Time Face Detection using Computer Vision** — Computer Vision
+```
+public/profile.jpg
+```
 
-Each project's `repoUrl` and `liveUrl` are **placeholders** (`'#'`). Replace them
-with your real GitHub repo and live demo links. Set a link to `''` (empty
-string) to hide that button.
+The Hero shows it at `profile.photo` (`/profile.jpg` by default). If the file
+is missing, the site shows a plain placeholder instead of a broken image.
+
+### Project screenshots
+
+Put screenshots under `public/projects/` using the filenames referenced in
+`src/data/portfolio.ts` (see `public/projects/README.md`):
+
+- `project-fashion.png`
+- `project-crypto.png`
+- `project-nlp.png`
+- `project-face-detection.png`
+
+Missing screenshots fall back to a plain "Screenshot pending" placeholder.
+
+### Links you still need to fill in
+
+These are placeholders in `profile` (in `src/data/portfolio.ts`) — replace
+`'#'` / the example email with your real values:
+
+- `githubUrl`
+- `linkedinUrl`
+- `resumeUrl`
+- `email`
+
+Each project's `repoUrl` is also a `'#'` placeholder until the repos are
+public. `liveUrl` is left empty (`''`) — set it to a real URL only if a
+project has an actual deployed demo.
 
 ### Where to put real details
 
-| What                | Edit in `portfolio.ts` |
-| ------------------- | ---------------------- |
-| Name, university, tagline | `profile`        |
-| About paragraphs & facts  | `about`          |
-| Skills                    | `skillGroups`    |
-| Projects                  | `projects`       |
-| Education & coursework    | `education`, `relevantCoursework` |
-| Learning journey          | `learningJourney`|
-| Internship availability   | `availability`   |
-| Contact links             | `contact`        |
+| What                    | Edit in `portfolio.ts`              |
+| ----------------------- | ------------------------------------ |
+| Name, links, photo      | `profile`                             |
+| About paragraphs        | `about`                               |
+| Skills                  | `skillGroups`                         |
+| Projects                | `projects`                            |
+| Education & coursework  | `education`, `relevantCoursework`     |
+| Contact heading/text    | `contact`                             |
 
 ## Project structure
 
 ```
-portfolio/
+website/
 ├─ index.html
+├─ public/
+│  ├─ profile.jpg          # ← your photo goes here
+│  └─ projects/            # ← project screenshots go here
 ├─ src/
 │  ├─ main.tsx              # app entry
-│  ├─ App.tsx              # assembles all sections
-│  ├─ index.css            # Tailwind + design tokens
+│  ├─ App.tsx               # assembles all sections
+│  ├─ index.css             # Tailwind + design tokens
 │  ├─ data/
-│  │  └─ portfolio.ts      # ← ALL your content lives here
+│  │  └─ portfolio.ts       # ← ALL your content lives here
 │  └─ components/
-│     ├─ ui/               # reusable primitives (Section, Container, Tag, Timeline, icons)
-│     └─ sections/         # the 10 page sections
-├─ tailwind.config.js      # dark theme colors & fonts
+│     ├─ ui/                # reusable primitives (Section, Container, Tag, Portrait, ProjectImage, icons)
+│     └─ sections/           # the page sections
+├─ tailwind.config.js       # theme colors & fonts
 └─ ...config files
 ```
 
 ## Theming
 
-The dark palette, accent gradient, and fonts are defined in
-`tailwind.config.js` (`theme.extend.colors`, `backgroundImage`, `fontFamily`).
-Reusable style classes (`.card`, `.btn-primary`, `.text-gradient`, etc.) are in
-`src/index.css`.
+Colors and fonts are defined in `tailwind.config.js`. Reusable style classes
+(`.card`, `.btn-primary`, `.eyebrow`, etc.) are in `src/index.css`.

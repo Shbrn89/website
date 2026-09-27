@@ -1,31 +1,22 @@
 import Section from '../ui/Section'
-import Timeline from '../ui/Timeline'
 import Tag from '../ui/Tag'
 import { education, relevantCoursework } from '../../data/portfolio'
 
 export default function Education() {
   return (
-    <Section
-      id="education"
-      eyebrow="Education"
-      title="Where I'm studying"
-      className="bg-base-900/40"
-    >
-      <div className="grid gap-10 lg:grid-cols-3">
-        <div className="lg:col-span-2">
-          <Timeline items={education} />
-        </div>
+    <Section id="education" eyebrow="04 — Education" title="Education">
+      <div className="max-w-2xl border-l border-white/10 pl-6">
+        <h3 className="font-serif text-xl text-white">{education.university}</h3>
+        <p className="mt-1 text-sm text-neutral-400">{education.program}</p>
+        <p className="mt-4 text-sm leading-relaxed text-neutral-400">
+          {education.description}
+        </p>
 
         {relevantCoursework.length > 0 && (
-          <div className="card h-fit">
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-widest text-slate-500">
-              Relevant coursework
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {relevantCoursework.map((course) => (
-                <Tag key={course}>{course}</Tag>
-              ))}
-            </div>
+          <div className="mt-6 flex flex-wrap gap-2">
+            {relevantCoursework.map((course) => (
+              <Tag key={course}>{course}</Tag>
+            ))}
           </div>
         )}
       </div>

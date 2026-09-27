@@ -1,11 +1,9 @@
 import Navbar from './components/sections/Navbar'
 import Hero from './components/sections/Hero'
+import Projects from './components/sections/Projects'
 import About from './components/sections/About'
 import Skills from './components/sections/Skills'
-import Projects from './components/sections/Projects'
 import Education from './components/sections/Education'
-import LearningJourney from './components/sections/LearningJourney'
-import Availability from './components/sections/Availability'
 import Contact from './components/sections/Contact'
 import Footer from './components/sections/Footer'
 
@@ -15,12 +13,10 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
+        <Projects />
         <About />
         <Skills />
-        <Projects />
         <Education />
-        <LearningJourney />
-        <Availability />
         <Contact />
       </main>
       <Footer />
