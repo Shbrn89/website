@@ -22,6 +22,8 @@ export type Project = {
   title: string
   /** one or two natural sentences describing what it does */
   description: string
+  /** 2-3 concise, concrete technical points on what was actually built */
+  highlights: string[]
   /** tech actually used in the project */
   tech: string[]
   /** screenshot path under /public/projects — shown if the file exists */
@@ -37,6 +39,11 @@ export type Project = {
 export type TimelineItem = {
   title: string
   meta: string
+  description: string
+}
+
+export type ExploringItem = {
+  title: string
   description: string
 }
 
@@ -59,7 +66,7 @@ export const profile = {
 
   // One supporting sentence under the statement.
   summary:
-    'Computer Science student focused on software development, machine learning, and practical web applications.',
+    'Computer Science student focused on software development, machine learning, computer vision, and practical web applications.',
 
   // Portrait photo — place your own photo at /public/profile.jpg
   photo: '/profile.jpg',
@@ -89,8 +96,8 @@ export const navLinks: NavLink[] = [
 
 export const about = {
   paragraphs: [
-    "I'm currently studying Computer Science at BINUS University. Most of what I learn comes from building projects — from machine learning experiments and computer vision to web applications.",
-    'I enjoy understanding how things work, building them, and improving them along the way.',
+    "I'm a Computer Science student at BINUS University interested in building practical software and exploring how technology can solve real problems. My interests include software development, machine learning, computer vision, and web applications.",
+    "I'm currently expanding my technical foundation through academic projects and independent learning, including Network Security Fundamentals. I learn best by turning concepts into working projects and experimenting with different technologies.",
   ],
 }
 
@@ -117,6 +124,10 @@ export const skillGroups: SkillGroup[] = [
     skills: ['OpenCV', 'Real-Time Image Processing'],
   },
   {
+    category: 'Networking & Security',
+    skills: ['Computer Networking', 'Network Security Fundamentals'],
+  },
+  {
     category: 'Tools',
     skills: ['Git', 'GitHub', 'VS Code'],
   },
@@ -134,7 +145,12 @@ export const projects: Project[] = [
     title: 'Fashion Asset Marketplace',
     featured: true,
     description:
-      'A web marketplace concept for browsing, listing, and trading fashion assets, built to practice structuring a full front-end product from the browsing flow down to individual listing pages.',
+      'A web marketplace concept for browsing, listing, and trading fashion assets.',
+    highlights: [
+      'Built the browsing, listing, and item detail flows as a full front-end product',
+      'Structured the UI into reusable React components with TypeScript',
+      'Styled the interface with Tailwind CSS, focused on layout and usability',
+    ],
     tech: ['React', 'TypeScript', 'Tailwind CSS'],
     image: '/projects/project-fashion.png',
     repoUrl: '#', // TODO: replace with the real GitHub repo URL
@@ -144,7 +160,12 @@ export const projects: Project[] = [
     number: '02',
     title: 'Cryptocurrency Trend Analysis',
     description:
-      'Applies machine learning to historical cryptocurrency price data to study and model market trends, covering data collection, preprocessing, and model evaluation.',
+      'Applies machine learning to historical cryptocurrency price data to study market trends.',
+    highlights: [
+      'Collected and cleaned historical price data for preprocessing',
+      'Trained and evaluated machine learning models to study price trends',
+      'Used Pandas and NumPy for data handling and analysis',
+    ],
     tech: ['Python', 'Machine Learning', 'Pandas', 'NumPy'],
     image: '/projects/project-crypto.png',
     repoUrl: '#', // TODO: replace with the real GitHub repo URL
@@ -154,7 +175,11 @@ export const projects: Project[] = [
     number: '03',
     title: 'Automatic Text Summarization',
     description:
-      'An NLP project that generates short summaries from longer documents, using text preprocessing and summarization techniques to condense content while keeping its meaning.',
+      'An NLP project that generates short summaries from longer documents.',
+    highlights: [
+      'Built a text preprocessing pipeline to clean raw input',
+      'Applied NLP summarization techniques to condense text while keeping its meaning',
+    ],
     tech: ['Python', 'NLP'],
     image: '/projects/project-nlp.png',
     repoUrl: '#', // TODO: replace with the real GitHub repo URL
@@ -164,7 +189,11 @@ export const projects: Project[] = [
     number: '04',
     title: 'Real-Time Face Detection',
     description:
-      'A computer vision project that detects faces from a live camera feed in real time, processing video frames and drawing detections directly on the stream.',
+      'A computer vision project that detects faces from a live camera feed in real time.',
+    highlights: [
+      'Processed live video frames using OpenCV',
+      'Implemented real-time face detection and drew results directly on the stream',
+    ],
     tech: ['Python', 'OpenCV', 'Computer Vision'],
     image: '/projects/project-face-detection.png',
     repoUrl: '#', // TODO: replace with the real GitHub repo URL
@@ -173,7 +202,30 @@ export const projects: Project[] = [
 ]
 
 /* -------------------------------------------------------------------------- */
-/*  6. EDUCATION                                                              */
+/*  6. CURRENTLY EXPLORING                                                    */
+/* -------------------------------------------------------------------------- */
+/*  Areas being actively learned right now — not claimed expertise.           */
+
+export const currentlyExploring: ExploringItem[] = [
+  {
+    title: 'Deep Learning',
+    description:
+      'Exploring model inference, computer vision, and image analysis.',
+  },
+  {
+    title: 'Network Security',
+    description:
+      'Learning network security fundamentals, networking concepts, TCP/IP, common security threats, and basic security practices.',
+  },
+  {
+    title: 'Software Engineering',
+    description:
+      'Improving understanding of application architecture, APIs, testing, and software development practices.',
+  },
+]
+
+/* -------------------------------------------------------------------------- */
+/*  7. EDUCATION                                                              */
 /* -------------------------------------------------------------------------- */
 
 export const education = {
@@ -194,7 +246,7 @@ export const relevantCoursework: string[] = [
 ]
 
 /* -------------------------------------------------------------------------- */
-/*  7. CONTACT                                                                */
+/*  8. CONTACT                                                                */
 /* -------------------------------------------------------------------------- */
 
 export const contact = {
@@ -203,7 +255,7 @@ export const contact = {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  8. FOOTER                                                                 */
+/*  9. FOOTER                                                                 */
 /* -------------------------------------------------------------------------- */
 
 export const footer = {

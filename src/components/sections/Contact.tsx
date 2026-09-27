@@ -28,7 +28,7 @@ const links = [
 
 export default function Contact() {
   return (
-    <Section id="contact" eyebrow="05 — Contact" title={contact.heading}>
+    <Section id="contact" eyebrow="06 — Contact" title={contact.heading}>
       <p className="max-w-xl text-base leading-relaxed text-neutral-400">
         {contact.text}
       </p>

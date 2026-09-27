@@ -42,8 +42,8 @@ export default function Projects() {
     <Section
       id="projects"
       eyebrow="01 — Projects"
-      title="Selected Projects"
-      description="A selection of projects I've built while studying Computer Science."
+      title="Featured Projects"
+      description="Selected projects I've built while studying Computer Science."
     >
       {/* Featured project */}
       <article className="grid gap-8 border border-white/10 p-6 sm:p-8 lg:grid-cols-2 lg:gap-10">
@@ -62,6 +62,26 @@ export default function Projects() {
           <p className="mt-3 text-sm leading-relaxed text-neutral-400">
             {featured.description}
           </p>
+
+          {featured.highlights.length > 0 && (
+            <div className="mt-5">
+              <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-neutral-500">
+                What I built
+              </p>
+              <ul className="mt-2.5 space-y-1.5">
+                {featured.highlights.map((point) => (
+                  <li
+                    key={point}
+                    className="flex gap-2 text-sm leading-relaxed text-neutral-300"
+                  >
+                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
+                    {point}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
           <div className="mt-5 flex flex-wrap gap-2">
             {featured.tech.map((t) => (
               <Tag key={t}>{t}</Tag>
@@ -94,6 +114,26 @@ export default function Projects() {
             <p className="mt-2 text-sm leading-relaxed text-neutral-400">
               {project.description}
             </p>
+
+            {project.highlights.length > 0 && (
+              <div className="mt-4">
+                <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-neutral-500">
+                  What I built
+                </p>
+                <ul className="mt-2 space-y-1.5">
+                  {project.highlights.map((point) => (
+                    <li
+                      key={point}
+                      className="flex gap-2 text-sm leading-relaxed text-neutral-300"
+                    >
+                      <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
             <div className="mt-4 flex flex-wrap gap-2">
               {project.tech.map((t) => (
                 <Tag key={t}>{t}</Tag>

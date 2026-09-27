@@ -4,7 +4,7 @@ import { education, relevantCoursework } from '../../data/portfolio'
 
 export default function Education() {
   return (
-    <Section id="education" eyebrow="04 — Education" title="Education">
+    <Section id="education" eyebrow="05 — Education" title="Education">
       <div className="max-w-2xl border-l border-white/10 pl-6">
         <h3 className="font-serif text-xl text-white">{education.university}</h3>
         <p className="mt-1 text-sm text-neutral-400">{education.program}</p>
