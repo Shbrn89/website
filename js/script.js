@@ -89,23 +89,38 @@ function initScrollSpy() {
     linksByHref[href].push(link)
   })
 
-  const sectionIds = Object.keys(linksByHref)
-  const sections = sectionIds
-    .map((href) => document.querySelector(href))
-    .filter(Boolean)
-
-  if (sections.length === 0) return
-
   const setActive = (href) => {
     navLinks.forEach((link) => link.classList.remove('is-active'))
+    // If `href` doesn't match any nav link (e.g. the hero/"#top"), this just
+    // clears the highlight everywhere — which is exactly what we want when
+    // scrolling back to the very top of the page.
     ;(linksByHref[href] || []).forEach((link) => link.classList.add('is-active'))
   }
+
+  // Track every section that has a nav link, PLUS the hero ("#top") itself.
+  // Without tracking the hero too, scrolling/clicking back to the top left
+  // no section "in view" from the observer's point of view, so the last
+  // active link (e.g. "About") stayed highlighted forever — confusing.
+  const sectionsToTrack = [{ href: '#top', el: document.getElementById('top') }]
+  Object.keys(linksByHref).forEach((href) => {
+    sectionsToTrack.push({ href, el: document.querySelector(href) })
+  })
+
+  const hrefByElementId = {}
+  const sections = []
+  sectionsToTrack.forEach(({ href, el }) => {
+    if (!el) return
+    hrefByElementId[el.id] = href
+    sections.push(el)
+  })
+
+  if (sections.length === 0) return
 
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          setActive(`#${entry.target.id}`)
+          setActive(hrefByElementId[entry.target.id])
         }
       })
     },
@@ -113,6 +128,19 @@ function initScrollSpy() {
   )
 
   sections.forEach((section) => observer.observe(section))
+
+  // Give instant feedback on click — the highlight jumps to the clicked
+  // link right away instead of waiting for the smooth-scroll animation to
+  // finish and the observer above to catch up.
+  navLinks.forEach((link) => {
+    link.addEventListener('click', () => setActive(link.getAttribute('href')))
+  })
+
+  // Anything that scrolls back to the top of the page (the "Shobirin" logo
+  // or either "Home" button) should clear the highlight immediately too.
+  document.querySelectorAll('a[href="#top"]').forEach((link) => {
+    link.addEventListener('click', () => setActive('#top'))
+  })
 }
 
 /* -------------------------------------------------------------------------- */
