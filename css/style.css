@@ -1124,14 +1124,22 @@ section[id] {
   color: var(--neutral-600);
 }
 
-.contact-row-value {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--neutral-500);
-  transition: transform 0.15s;
+/* Small arrow shown on the right of each contact row instead of raw link
+   text — it reads as "go to this link" rather than showing a URL. */
+.contact-row-arrow {
+  color: var(--neutral-600);
+  transition: transform 0.15s ease-out, color 0.15s ease-out;
 }
-.contact-row:not(.is-placeholder):hover .contact-row-value {
-  transform: translateX(2px);
+.contact-row:not(.is-placeholder):hover .contact-row-arrow {
+  color: var(--accent);
+  transform: translate(3px, -3px);
+}
+
+/* Rows without a real URL yet stay visually "inactive": the arrow is
+   dimmed and doesn't move on hover (handled by :not(.is-placeholder) above).
+   They're still readable, just clearly not clickable yet. */
+.contact-row.is-placeholder .contact-row-arrow {
+  opacity: 0.5;
 }
 
 /* -------------------------------------------------------------------------- */
