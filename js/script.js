@@ -8,7 +8,8 @@
  *  1. Navbar background on scroll
  *  2. Mobile menu open/close
  *  3. Scroll-spy — highlight the nav link for the section currently in view
- *  4. Footer year
+ *  4. Scroll-reveal — fade/slide sections in as they enter the viewport
+ *  5. Footer year
  *
  *  Note: broken image fallbacks (portrait photo / project screenshots) are
  *  handled inline in index.html via the `onerror` attribute on each <img>,
@@ -19,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavbarScrollState()
   initMobileMenu()
   initScrollSpy()
+  initScrollReveal()
   setFooterYear()
 })
 
@@ -114,7 +116,44 @@ function initScrollSpy() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  4. FOOTER YEAR                                                            */
+/*  4. SCROLL-REVEAL — fade/slide sections in as they enter the viewport     */
+/* -------------------------------------------------------------------------- */
+
+function initScrollReveal() {
+  // If the user has asked their OS to reduce motion, skip this entirely —
+  // every section stays fully visible with no animation (see the matching
+  // `prefers-reduced-motion` rule in css/style.css as a CSS-only backup).
+  const prefersReducedMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)',
+  ).matches
+  if (prefersReducedMotion) return
+
+  // Every section under <main> gets the "reveal" treatment — hidden by
+  // default, then faded/slid into place — except the hero (#top), which
+  // already has its own simple fade-in as soon as the page loads.
+  const revealTargets = document.querySelectorAll('main > section:not(#top)')
+  if (revealTargets.length === 0) return
+
+  revealTargets.forEach((el) => el.classList.add('reveal'))
+
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible')
+          // Reveal each section once, then stop watching it.
+          obs.unobserve(entry.target)
+        }
+      })
+    },
+    { threshold: 0.15 },
+  )
+
+  revealTargets.forEach((el) => observer.observe(el))
+}
+
+/* -------------------------------------------------------------------------- */
+/*  5. FOOTER YEAR                                                            */
 /* -------------------------------------------------------------------------- */
 
 function setFooterYear() {

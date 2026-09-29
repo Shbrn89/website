@@ -112,15 +112,26 @@ for them and replace with your real URLs:
 ## How the JavaScript works
 
 `js/script.js` is plain vanilla JavaScript with no dependencies. It does
-four small things:
+five small things:
 
 1. Adds a background to the navbar once you scroll down.
 2. Opens/closes the mobile menu when the hamburger button is tapped.
 3. Highlights the nav link for whichever section is currently in view
    (using the browser's built-in `IntersectionObserver`).
-4. Writes the current year into the footer copyright line.
+4. Fades/slides each section into view the first time it scrolls into the
+   viewport (also using `IntersectionObserver`). This is skipped entirely if
+   the visitor's OS has "reduce motion" turned on.
+5. Writes the current year into the footer copyright line.
 
 Everything else — layout, animations, responsive behavior — is plain CSS.
+
+### Motion & accessibility
+
+All animation (scroll reveal, hover transitions, the hero's fade-in) respects
+the `prefers-reduced-motion` setting. If a visitor's operating system is set
+to reduce motion, `css/style.css` disables these transitions/animations via a
+`@media (prefers-reduced-motion: reduce)` block, and `js/script.js` checks
+the same setting before enabling the scroll-reveal effect.
 
 ## Theming
 

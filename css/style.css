@@ -210,6 +210,42 @@ section[id] {
   }
 }
 
+/* Scroll-reveal: sections start slightly faded/lowered, then settle into
+   place once they enter the viewport (toggled by js/script.js). */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Respect the user's OS-level "reduce motion" preference: turn off smooth
+   scrolling, the fade-in keyframe, and the reveal transition entirely. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .fade-in {
+    animation: none;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* -------------------------------------------------------------------------- */
 /*  NAVBAR                                                                    */
 /* -------------------------------------------------------------------------- */
@@ -868,6 +904,19 @@ section[id] {
 .img-fallback.is-broken .portrait-placeholder,
 .img-fallback.is-broken .project-image-placeholder {
   display: flex;
+}
+
+/* Subtle zoom on project screenshots when hovering the whole card */
+.project-featured-image img,
+.project-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease-out;
+}
+.project-featured:hover .project-featured-image img,
+.project-card:hover .project-card-image img {
+  transform: scale(1.04);
 }
 
 @media (min-width: 640px) {
