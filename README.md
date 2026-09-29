@@ -100,14 +100,12 @@ the same way the photo does.
 
 ### Links you still need to fill in
 
-Several links in `index.html` are still placeholders (`href="#"`) — search
+GitHub (navbar, hero, contact section) and Email (contact section) are
+already filled in with real values. Still placeholders (`href="#"`) — search
 for them and replace with your real URLs:
 
-- GitHub (navbar, hero, contact section)
 - LinkedIn (contact section)
-- Email (contact section — use `href="mailto:you@example.com"`)
-- Resume (navbar, contact section)
-- Each project's GitHub repo link
+- Each project's GitHub repo link (in the Projects section)
 
 ## How the JavaScript works
 
