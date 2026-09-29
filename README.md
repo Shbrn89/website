@@ -100,12 +100,13 @@ the same way the photo does.
 
 ### Links you still need to fill in
 
-GitHub (navbar, hero, contact section) and Email (contact section) are
-already filled in with real values. Still placeholders (`href="#"`) — search
-for them and replace with your real URLs:
+GitHub (navbar, hero, contact section), Email (contact section), and
+LinkedIn (contact section) are already filled in with real values, along
+with the GitHub repo link for Cryptocurrency Trend Analysis. Still
+placeholders (`href="#"`) — search for them and replace with your real URLs:
 
-- LinkedIn (contact section)
-- Each project's GitHub repo link (in the Projects section)
+- Automatic Text Summarization's GitHub repo link (in the Projects section)
+- Real-Time Face Detection's GitHub repo link (in the Projects section)
 
 ## How the JavaScript works
 
