@@ -3,121 +3,127 @@
 A personal portfolio for **Ahmad Khoirul Shobirin** (*Shobirin*), a Computer
 Science student at BINUS University, built for internship applications.
 
-Built with **React + TypeScript + Vite + Tailwind CSS**. Dark theme, editorial
-typography, restrained accent color — no gradients, glassmorphism, or
-percentage bars.
+Built with **plain HTML, CSS, and vanilla JavaScript only** — no framework,
+no build step, no package manager. Dark theme, editorial typography,
+restrained accent color.
 
 ## Sections
 
 1. Navbar
 2. Hero (with portrait photo)
-3. Selected Projects
+3. Featured Projects
 4. About
 5. Skills
-6. Education
-7. Contact
-8. Footer
+6. Currently Exploring
+7. Education
+8. Contact
+9. Footer
 
 ## Getting started
 
-Requires **Node.js 18+**.
+There's nothing to install and nothing to build. Just open the file:
 
-```bash
-# 1. Install dependencies
-npm install
-
-# 2. Start the dev server (http://localhost:5173)
-npm run dev
-
-# 3. Build for production
-npm run build
-
-# 4. Preview the production build
-npm run preview
+```
+index.html
 ```
 
-> Using `pnpm` or `yarn`? Just swap `npm` for your package manager.
+directly in your browser, or serve the folder with any static file server,
+for example:
+
+```bash
+# Python 3
+python3 -m http.server
+
+# Node's `serve` package (if you have it)
+npx serve .
+```
+
+Then visit `http://localhost:8000` (or whichever port your server prints).
+
+## Project structure
+
+```
+website/
+├─ index.html         # all page content and structure
+├─ css/
+│  └─ style.css       # all styling — colors, fonts, spacing, layout, responsive rules
+├─ js/
+│  └─ script.js       # small interactive behaviors (see below)
+├─ favicon.svg
+├─ profile.jpg         # ← put your photo here (not included yet)
+└─ projects/
+   ├─ README.md
+   ├─ project-crypto.png          # ← put screenshots here (not included yet)
+   ├─ project-nlp.png
+   └─ project-face-detection.png
+```
+
+There is no `src/`, no `node_modules/`, and no config files — everything
+that used to be spread across a React/TypeScript/Vite/Tailwind project now
+lives in these three files: `index.html`, `css/style.css`, `js/script.js`.
 
 ## Editing your content
 
-All the text, links, projects, and details live in **one file**:
+Because this is now a plain static site, all content lives directly in
+**`index.html`** as regular HTML — there is no separate data file. To change
+text, update the relevant tag in `index.html` directly. For example:
 
-```
-src/data/portfolio.ts
-```
-
-Edit the values there and the whole site updates automatically — you rarely
-need to touch the components.
+- Your name / hero text → inside `<section id="top" class="hero">`
+- Projects → inside `<section id="projects" class="section">`
+- Skills → inside `<section id="skills" class="section">`
+- Contact links → inside `<section id="contact" class="section">`
 
 ### Your photo
 
 Put your photo at:
 
 ```
-public/profile.jpg
+profile.jpg
 ```
 
-The Hero shows it at `profile.photo` (`/profile.jpg` by default). If the file
-is missing, the site shows a plain placeholder instead of a broken image.
+(in the same folder as `index.html`). The Hero references it directly. If
+the file is missing, the page shows a plain placeholder instead of a broken
+image (handled by the `onerror` attribute on the `<img>` tag, no JavaScript
+required for this to work).
 
 ### Project screenshots
 
-Put screenshots under `public/projects/` using the filenames referenced in
-`src/data/portfolio.ts` (see `public/projects/README.md`):
+Put screenshots in the `projects/` folder using these filenames (see
+`projects/README.md`):
 
-- `project-crypto.png`
-- `project-nlp.png`
-- `project-face-detection.png`
+- `project-crypto.png` — Cryptocurrency Trend Analysis
+- `project-nlp.png` — Automatic Text Summarization
+- `project-face-detection.png` — Real-Time Face Detection
 
-Missing screenshots fall back to a plain "Screenshot pending" placeholder.
+Missing screenshots fall back to a plain "Screenshot pending" placeholder,
+the same way the photo does.
 
 ### Links you still need to fill in
 
-These are placeholders in `profile` (in `src/data/portfolio.ts`) — replace
-`'#'` / the example email with your real values:
+Several links in `index.html` are still placeholders (`href="#"`) — search
+for them and replace with your real URLs:
 
-- `githubUrl`
-- `linkedinUrl`
-- `resumeUrl`
-- `email`
+- GitHub (navbar, hero, contact section)
+- LinkedIn (contact section)
+- Email (contact section — use `href="mailto:you@example.com"`)
+- Resume (navbar, contact section)
+- Each project's GitHub repo link
 
-Each project's `repoUrl` is also a `'#'` placeholder until the repos are
-public. `liveUrl` is left empty (`''`) — set it to a real URL only if a
-project has an actual deployed demo.
+## How the JavaScript works
 
-### Where to put real details
+`js/script.js` is plain vanilla JavaScript with no dependencies. It does
+four small things:
 
-| What                    | Edit in `portfolio.ts`              |
-| ----------------------- | ------------------------------------ |
-| Name, links, photo      | `profile`                             |
-| About paragraphs        | `about`                               |
-| Skills                  | `skillGroups`                         |
-| Projects                | `projects`                            |
-| Education & coursework  | `education`, `relevantCoursework`     |
-| Contact heading/text    | `contact`                             |
+1. Adds a background to the navbar once you scroll down.
+2. Opens/closes the mobile menu when the hamburger button is tapped.
+3. Highlights the nav link for whichever section is currently in view
+   (using the browser's built-in `IntersectionObserver`).
+4. Writes the current year into the footer copyright line.
 
-## Project structure
-
-```
-website/
-├─ index.html
-├─ public/
-│  ├─ profile.jpg          # ← your photo goes here
-│  └─ projects/            # ← project screenshots go here
-├─ src/
-│  ├─ main.tsx              # app entry
-│  ├─ App.tsx               # assembles all sections
-│  ├─ index.css             # Tailwind + design tokens
-│  ├─ data/
-│  │  └─ portfolio.ts       # ← ALL your content lives here
-│  └─ components/
-│     ├─ ui/                # reusable primitives (Section, Container, Tag, Portrait, ProjectImage, icons)
-│     └─ sections/           # the page sections
-├─ tailwind.config.js       # theme colors & fonts
-└─ ...config files
-```
+Everything else — layout, animations, responsive behavior — is plain CSS.
 
 ## Theming
 
-Colors and fonts are defined in `tailwind.config.js`. Reusable style classes
-(`.card`, `.btn-primary`, `.eyebrow`, etc.) are in `src/index.css`.
+All colors, fonts, and spacing are defined once as CSS variables at the top
+of `css/style.css` (in the `:root` block), then reused throughout the file.
+Change a variable there to update the whole site's look.

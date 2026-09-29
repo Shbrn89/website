@@ -1,7 +1,7 @@
 # Project screenshots
 
 Place project screenshots in this folder using these filenames (referenced in
-`src/data/portfolio.ts`):
+`index.html`):
 
 - `project-crypto.png` — Cryptocurrency Trend Analysis
 - `project-nlp.png` — Automatic Text Summarization

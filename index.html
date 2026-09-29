@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
@@ -14,10 +14,562 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="css/style.css" />
     <title>Shobirin — Computer Science Student</title>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <!-- ==================================================================
+         NAVBAR
+         ================================================================== -->
+    <header class="navbar" id="navbar">
+      <div class="container navbar-inner">
+        <a href="#top" class="navbar-logo">Shobirin</a>
+
+        <!-- Desktop nav -->
+        <nav class="navbar-links" id="navbar-links">
+          <a href="#about" class="navbar-link" data-nav-link>About</a>
+          <a href="#projects" class="navbar-link" data-nav-link>Projects</a>
+          <a href="#skills" class="navbar-link" data-nav-link>Skills</a>
+          <a href="#education" class="navbar-link" data-nav-link>Education</a>
+          <a href="#contact" class="navbar-link" data-nav-link>Contact</a>
+          <span class="navbar-divider" aria-hidden="true"></span>
+          <a href="#" aria-label="GitHub" class="navbar-icon-link">
+            <svg class="icon icon-fill" viewBox="0 0 24 24" width="18" height="18">
+              <path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.85 9.73.5.1.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.37-3.37-1.37-.46-1.18-1.11-1.5-1.11-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.72 0 0 .84-.28 2.75 1.05a9.32 9.32 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.42.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.93-2.35 4.8-4.58 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.59.69.48A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z" />
+            </svg>
+          </a>
+          <a href="#" class="btn btn-ghost btn-small">Resume</a>
+        </nav>
+
+        <!-- Mobile toggle -->
+        <button type="button" class="navbar-toggle" id="navbar-toggle" aria-label="Toggle menu" aria-expanded="false">
+          <svg class="icon" id="icon-menu" viewBox="0 0 24 24" width="18" height="18">
+            <path d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg class="icon" id="icon-close" viewBox="0 0 24 24" width="18" height="18" style="display: none">
+            <path d="M18 6 6 18M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile menu -->
+      <div class="navbar-mobile-menu" id="navbar-mobile-menu">
+        <div class="container navbar-mobile-links">
+          <a href="#about" class="navbar-mobile-link" data-nav-link data-nav-mobile>
+            <span class="dot" aria-hidden="true"></span>About
+          </a>
+          <a href="#projects" class="navbar-mobile-link" data-nav-link data-nav-mobile>
+            <span class="dot" aria-hidden="true"></span>Projects
+          </a>
+          <a href="#skills" class="navbar-mobile-link" data-nav-link data-nav-mobile>
+            <span class="dot" aria-hidden="true"></span>Skills
+          </a>
+          <a href="#education" class="navbar-mobile-link" data-nav-link data-nav-mobile>
+            <span class="dot" aria-hidden="true"></span>Education
+          </a>
+          <a href="#contact" class="navbar-mobile-link" data-nav-link data-nav-mobile>
+            <span class="dot" aria-hidden="true"></span>Contact
+          </a>
+          <div class="navbar-mobile-actions">
+            <a href="#" class="btn btn-ghost btn-small">
+              <svg class="icon icon-fill" viewBox="0 0 24 24" width="16" height="16">
+                <path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.85 9.73.5.1.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.37-3.37-1.37-.46-1.18-1.11-1.5-1.11-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.72 0 0 .84-.28 2.75 1.05a9.32 9.32 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.42.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.93-2.35 4.8-4.58 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.59.69.48A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z" />
+              </svg>
+              GitHub
+            </a>
+            <a href="#" class="btn btn-ghost btn-small">Resume</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- ==================================================================
+           HERO
+           ================================================================== -->
+      <section id="top" class="hero">
+        <div class="container">
+          <div class="hero-grid">
+            <!-- Left: intro -->
+            <div class="hero-intro fade-in">
+              <div class="hero-kicker">
+                <span class="hero-kicker-rule" aria-hidden="true"></span>
+                <p class="hero-kicker-label">Computer Science @ BINUS University</p>
+              </div>
+
+              <h1 class="hero-name">Ahmad Khoirul Shobirin</h1>
+
+              <p class="hero-statement">I build software, explore data, and learn by building.</p>
+
+              <p class="hero-summary">
+                Computer Science student focused on software development, machine learning, computer vision, and
+                practical web applications.
+              </p>
+
+              <div class="hero-actions">
+                <a href="#projects" class="btn btn-primary">
+                  View Projects
+                  <svg class="icon" viewBox="0 0 24 24" width="15" height="15">
+                    <path d="M7 17 17 7" />
+                    <path d="M8 7h9v9" />
+                  </svg>
+                </a>
+                <a href="#" class="hero-secondary-link">
+                  <svg class="icon icon-fill" viewBox="0 0 24 24" width="16" height="16">
+                    <path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.85 9.73.5.1.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.37-3.37-1.37-.46-1.18-1.11-1.5-1.11-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.72 0 0 .84-.28 2.75 1.05a9.32 9.32 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.42.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.93-2.35 4.8-4.58 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.59.69.48A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z" />
+                  </svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+
+            <!-- Right: portrait -->
+            <div class="hero-portrait-col">
+              <div class="portrait">
+                <div class="portrait-frame" aria-hidden="true"></div>
+                <div class="portrait-photo img-fallback">
+                  <img
+                    src="profile.jpg"
+                    alt="Ahmad Khoirul Shobirin"
+                    onerror="this.classList.add('is-broken'); this.closest('.img-fallback').classList.add('is-broken')"
+                  />
+                  <div class="portrait-placeholder">
+                    <span class="initial">S</span>
+                    <p>Add a photo at <code>/profile.jpg</code></p>
+                  </div>
+                  <span class="portrait-corner-h" aria-hidden="true"></span>
+                  <span class="portrait-corner-v" aria-hidden="true"></span>
+                </div>
+              </div>
+              <p class="hero-caption">BINUS University — Computer Science</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           PROJECTS
+           ================================================================== -->
+      <section id="projects" class="section">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-header-text">
+              <p class="eyebrow">01 — Projects</p>
+              <h2 class="section-title">Featured Projects</h2>
+              <p class="section-description">Selected projects I've built while studying Computer Science.</p>
+            </div>
+            <span class="section-index" aria-hidden="true">01</span>
+          </div>
+
+          <!-- Featured project -->
+          <article class="project-featured">
+            <div class="project-featured-image project-card-image img-fallback">
+              <img
+                src="projects/project-crypto.png"
+                alt="Cryptocurrency Trend Analysis"
+                onerror="this.classList.add('is-broken'); this.closest('.img-fallback').classList.add('is-broken')"
+              />
+              <div class="project-image-placeholder">
+                <span>Screenshot pending</span>
+                <code>/projects/project-crypto.png</code>
+              </div>
+            </div>
+            <div class="project-featured-body">
+              <span class="project-number">01</span>
+              <h3 class="project-featured-title">Cryptocurrency Trend Analysis</h3>
+              <p class="project-desc">
+                Applies machine learning to historical cryptocurrency price data to study market trends.
+              </p>
+
+              <div class="project-built">
+                <p class="project-built-label">What I built</p>
+                <ul class="project-built-list">
+                  <li>Collected and cleaned historical price data for preprocessing</li>
+                  <li>Trained and evaluated machine learning models to study price trends</li>
+                  <li>Used Pandas and NumPy for data handling and analysis</li>
+                </ul>
+              </div>
+
+              <div class="project-tags">
+                <span class="tag">Python</span>
+                <span class="tag">Machine Learning</span>
+                <span class="tag">Pandas</span>
+                <span class="tag">NumPy</span>
+              </div>
+
+              <div class="project-links">
+                <a href="#">
+                  <svg class="icon icon-fill" viewBox="0 0 24 24" width="15" height="15">
+                    <path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.85 9.73.5.1.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.37-3.37-1.37-.46-1.18-1.11-1.5-1.11-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.72 0 0 .84-.28 2.75 1.05a9.32 9.32 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.42.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.93-2.35 4.8-4.58 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.59.69.48A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z" />
+                  </svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Remaining projects -->
+          <div class="project-grid">
+            <article class="project-card">
+              <div class="project-card-image img-fallback">
+                <img
+                  src="projects/project-nlp.png"
+                  alt="Automatic Text Summarization"
+                  onerror="this.classList.add('is-broken'); this.closest('.img-fallback').classList.add('is-broken')"
+                />
+                <div class="project-image-placeholder">
+                  <span>Screenshot pending</span>
+                  <code>/projects/project-nlp.png</code>
+                </div>
+              </div>
+              <div class="project-card-body">
+                <span class="project-number">02</span>
+                <h3 class="project-card-title">Automatic Text Summarization</h3>
+                <p class="project-desc">An NLP project that generates short summaries from longer documents.</p>
+
+                <div class="project-built">
+                  <p class="project-built-label">What I built</p>
+                  <ul class="project-built-list">
+                    <li>Built a text preprocessing pipeline to clean raw input</li>
+                    <li>Applied NLP summarization techniques to condense text while keeping its meaning</li>
+                  </ul>
+                </div>
+
+                <div class="project-tags">
+                  <span class="tag">Python</span>
+                  <span class="tag">NLP</span>
+                </div>
+
+                <div class="project-links">
+                  <a href="#">
+                    <svg class="icon icon-fill" viewBox="0 0 24 24" width="15" height="15">
+                      <path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.85 9.73.5.1.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.37-3.37-1.37-.46-1.18-1.11-1.5-1.11-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.72 0 0 .84-.28 2.75 1.05a9.32 9.32 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.42.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.93-2.35 4.8-4.58 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.59.69.48A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z" />
+                    </svg>
+                    GitHub
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-card-image img-fallback">
+                <img
+                  src="projects/project-face-detection.png"
+                  alt="Real-Time Face Detection"
+                  onerror="this.classList.add('is-broken'); this.closest('.img-fallback').classList.add('is-broken')"
+                />
+                <div class="project-image-placeholder">
+                  <span>Screenshot pending</span>
+                  <code>/projects/project-face-detection.png</code>
+                </div>
+              </div>
+              <div class="project-card-body">
+                <span class="project-number">03</span>
+                <h3 class="project-card-title">Real-Time Face Detection</h3>
+                <p class="project-desc">
+                  A computer vision project that detects faces from a live camera feed in real time.
+                </p>
+
+                <div class="project-built">
+                  <p class="project-built-label">What I built</p>
+                  <ul class="project-built-list">
+                    <li>Processed live video frames using OpenCV</li>
+                    <li>Implemented real-time face detection and drew results directly on the stream</li>
+                  </ul>
+                </div>
+
+                <div class="project-tags">
+                  <span class="tag">Python</span>
+                  <span class="tag">OpenCV</span>
+                  <span class="tag">Computer Vision</span>
+                </div>
+
+                <div class="project-links">
+                  <a href="#">
+                    <svg class="icon icon-fill" viewBox="0 0 24 24" width="15" height="15">
+                      <path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.85 9.73.5.1.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.37-3.37-1.37-.46-1.18-1.11-1.5-1.11-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.72 0 0 .84-.28 2.75 1.05a9.32 9.32 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.42.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.93-2.35 4.8-4.58 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.59.69.48A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z" />
+                    </svg>
+                    GitHub
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           ABOUT
+           ================================================================== -->
+      <section id="about" class="section">
+        <div class="container">
+          <div class="split">
+            <div class="split-label">
+              <p class="eyebrow">02 — About</p>
+              <h2 class="section-title">About</h2>
+            </div>
+            <div class="split-divider" aria-hidden="true"></div>
+            <div class="split-content">
+              <p>
+                I'm a Computer Science student at BINUS University interested in building practical software and
+                exploring how technology can solve real problems. My interests include software development,
+                machine learning, computer vision, and web applications.
+              </p>
+              <p>
+                I'm currently expanding my technical foundation through academic projects and independent learning,
+                including Network Security Fundamentals. I learn best by turning concepts into working projects and
+                experimenting with different technologies.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           SKILLS
+           ================================================================== -->
+      <section id="skills" class="section">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-header-text">
+              <p class="eyebrow">03 — Skills</p>
+              <h2 class="section-title">Skills</h2>
+              <p class="section-description">Tools and areas I use in coursework and the projects above.</p>
+            </div>
+            <span class="section-index" aria-hidden="true">03</span>
+          </div>
+
+          <div class="hairline-grid cols-2 lg-cols-3">
+            <div>
+              <h3 class="skill-group-title">Languages</h3>
+              <div class="skill-tags">
+                <span class="tag">Python</span>
+                <span class="tag">TypeScript</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">Java</span>
+                <span class="tag">SQL</span>
+              </div>
+            </div>
+            <div>
+              <h3 class="skill-group-title">Web Development</h3>
+              <div class="skill-tags">
+                <span class="tag">React</span>
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">Tailwind CSS</span>
+                <span class="tag">Vite</span>
+              </div>
+            </div>
+            <div>
+              <h3 class="skill-group-title">Machine Learning &amp; Data</h3>
+              <div class="skill-tags">
+                <span class="tag">Machine Learning</span>
+                <span class="tag">NLP</span>
+                <span class="tag">Pandas</span>
+                <span class="tag">NumPy</span>
+              </div>
+            </div>
+            <div>
+              <h3 class="skill-group-title">Computer Vision</h3>
+              <div class="skill-tags">
+                <span class="tag">OpenCV</span>
+                <span class="tag">Real-Time Image Processing</span>
+              </div>
+            </div>
+            <div>
+              <h3 class="skill-group-title">Networking &amp; Security</h3>
+              <div class="skill-tags">
+                <span class="tag">Computer Networking</span>
+                <span class="tag">Network Security Fundamentals</span>
+              </div>
+            </div>
+            <div>
+              <h3 class="skill-group-title">Tools</h3>
+              <div class="skill-tags">
+                <span class="tag">Git</span>
+                <span class="tag">GitHub</span>
+                <span class="tag">VS Code</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           CURRENTLY EXPLORING
+           ================================================================== -->
+      <section id="exploring" class="section">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-header-text">
+              <p class="eyebrow">04 — Currently Exploring</p>
+              <h2 class="section-title">Currently Exploring</h2>
+              <p class="section-description">
+                Areas I'm actively learning right now — not areas of professional expertise.
+              </p>
+            </div>
+            <span class="section-index" aria-hidden="true">04</span>
+          </div>
+
+          <div class="hairline-grid cols-3">
+            <div>
+              <div class="exploring-head">
+                <span class="exploring-index">01</span>
+                <span class="exploring-tag">Learning</span>
+              </div>
+              <h3 class="exploring-title">Deep Learning</h3>
+              <p class="exploring-desc">Exploring model inference, computer vision, and image analysis.</p>
+            </div>
+            <div>
+              <div class="exploring-head">
+                <span class="exploring-index">02</span>
+                <span class="exploring-tag">Learning</span>
+              </div>
+              <h3 class="exploring-title">Network Security</h3>
+              <p class="exploring-desc">
+                Learning network security fundamentals, networking concepts, TCP/IP, common security threats, and
+                basic security practices.
+              </p>
+            </div>
+            <div>
+              <div class="exploring-head">
+                <span class="exploring-index">03</span>
+                <span class="exploring-tag">Learning</span>
+              </div>
+              <h3 class="exploring-title">Software Engineering</h3>
+              <p class="exploring-desc">
+                Improving understanding of application architecture, APIs, testing, and software development
+                practices.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           EDUCATION
+           ================================================================== -->
+      <section id="education" class="section">
+        <div class="container">
+          <div class="split">
+            <div class="split-label">
+              <p class="eyebrow">05 — Education</p>
+              <h2 class="section-title">Education</h2>
+            </div>
+            <div class="split-divider" aria-hidden="true"></div>
+            <div class="split-content">
+              <h3 class="education-university">BINUS University</h3>
+              <p class="education-program">Computer Science</p>
+              <p class="education-desc">
+                Studying core Computer Science topics — data structures, algorithms, object-oriented programming,
+                databases, and software engineering.
+              </p>
+              <div class="education-tags">
+                <span class="tag">Data Structures &amp; Algorithms</span>
+                <span class="tag">Object-Oriented Programming</span>
+                <span class="tag">Database Systems</span>
+                <span class="tag">Web Programming</span>
+                <span class="tag">Software Engineering</span>
+                <span class="tag">Artificial Intelligence</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           CONTACT
+           ================================================================== -->
+      <section id="contact" class="section">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-header-text">
+              <p class="eyebrow">06 — Contact</p>
+              <h2 class="section-title">Let's build something.</h2>
+            </div>
+            <span class="section-index" aria-hidden="true">06</span>
+          </div>
+
+          <p class="contact-text">
+            I'm open to internship opportunities, software projects, and interesting technical challenges.
+          </p>
+
+          <ul class="contact-list">
+            <li>
+              <a href="#" class="contact-row is-placeholder" aria-disabled="true">
+                <span class="contact-row-left">
+                  <span class="contact-row-index">01</span>
+                  <svg class="icon icon-fill" viewBox="0 0 24 24" width="16" height="16">
+                    <path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.85 9.73.5.1.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.37-3.37-1.37-.46-1.18-1.11-1.5-1.11-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.72 0 0 .84-.28 2.75 1.05a9.32 9.32 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.42.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.93-2.35 4.8-4.58 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.59.69.48A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z" />
+                  </svg>
+                  GitHub
+                </span>
+                <span class="contact-row-value">link pending</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="contact-row is-placeholder" aria-disabled="true">
+                <span class="contact-row-left">
+                  <span class="contact-row-index">02</span>
+                  <svg class="icon icon-fill" viewBox="0 0 24 24" width="16" height="16">
+                    <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z" />
+                  </svg>
+                  LinkedIn
+                </span>
+                <span class="contact-row-value">link pending</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="contact-row is-placeholder" aria-disabled="true">
+                <span class="contact-row-left">
+                  <span class="contact-row-index">03</span>
+                  <svg class="icon" viewBox="0 0 24 24" width="16" height="16">
+                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                    <path d="m3 7 9 6 9-6" />
+                  </svg>
+                  Email
+                </span>
+                <span class="contact-row-value">link pending</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="contact-row is-placeholder" aria-disabled="true">
+                <span class="contact-row-left">
+                  <span class="contact-row-index">04</span>
+                  <svg class="icon" viewBox="0 0 24 24" width="16" height="16">
+                    <path d="M7 17 17 7" />
+                    <path d="M8 7h9v9" />
+                  </svg>
+                  Resume
+                </span>
+                <span class="contact-row-value">link pending</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <!-- ==================================================================
+         FOOTER
+         ================================================================== -->
+    <footer class="footer">
+      <div class="container footer-top">
+        <div>
+          <p class="footer-name">Ahmad Khoirul Shobirin</p>
+          <p class="footer-note">Built with HTML, CSS &amp; JavaScript.</p>
+        </div>
+        <nav class="footer-links">
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#skills">Skills</a>
+          <a href="#education">Education</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+      <p class="footer-copy" id="footer-copy"></p>
+    </footer>
+
+    <script src="js/script.js"></script>
   </body>
 </html>
