@@ -871,7 +871,7 @@ section[id] {
 .project-subtitle {
   margin: 0.375rem 0 0;
   font-size: 0.8125rem;
-  color: var(--accent-soft);
+  color: var(--accent);
 }
 
 .project-image-placeholder {
