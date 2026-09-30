@@ -868,6 +868,12 @@ section[id] {
   color: var(--white);
 }
 
+.project-subtitle {
+  margin: 0.375rem 0 0;
+  font-size: 0.8125rem;
+  color: var(--accent-soft);
+}
+
 .project-image-placeholder {
   position: absolute;
   inset: 0;

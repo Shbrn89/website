@@ -230,7 +230,7 @@
               <div class="project-card-image img-fallback">
                 <img
                   src="projects/project-nlp.png"
-                  alt="Automatic Text Summarization"
+                  alt="SUMMARLY-LEGAL — Legal Document Summarization"
                   onerror="this.classList.add('is-broken'); this.closest('.img-fallback').classList.add('is-broken')"
                 />
                 <div class="project-image-placeholder">
@@ -240,20 +240,40 @@
               </div>
               <div class="project-card-body">
                 <span class="project-number">02</span>
-                <h3 class="project-card-title">Automatic Text Summarization</h3>
-                <p class="project-desc">An NLP project that generates short summaries from longer documents.</p>
+                <h3 class="project-card-title">SUMMARLY-LEGAL — Legal Document Summarization</h3>
+                <p class="project-subtitle">Summarize Long Terms &amp; Conditions Documents</p>
+                <p class="project-desc">
+                  A text summarization system for long Terms &amp; Conditions documents using a TF-IDF extractive
+                  baseline and Transformer-based models, with BART as the main trained model and T5/LED as
+                  comparison models.
+                </p>
 
                 <div class="project-built">
                   <p class="project-built-label">What I built</p>
                   <ul class="project-built-list">
-                    <li>Built a text preprocessing pipeline to clean raw input</li>
-                    <li>Applied NLP summarization techniques to condense text while keeping its meaning</li>
+                    <li>
+                      <strong>TF-IDF Baseline</strong> — Extractive summarization that selects important sentences
+                      based on word weights.
+                    </li>
+                    <li>
+                      <strong>BART Trained Model</strong> — Main abstractive Transformer model loaded from a local
+                      training checkpoint.
+                    </li>
+                    <li>
+                      <strong>T5 &amp; LED</strong> — Comparison models used to evaluate summarization performance
+                      against BART and the TF-IDF baseline.
+                    </li>
                   </ul>
                 </div>
 
                 <div class="project-tags">
                   <span class="tag">Python</span>
                   <span class="tag">NLP</span>
+                  <span class="tag">TF-IDF</span>
+                  <span class="tag">BART</span>
+                  <span class="tag">T5</span>
+                  <span class="tag">LED</span>
+                  <span class="tag">Transformers</span>
                 </div>
 
                 <div class="project-links">
